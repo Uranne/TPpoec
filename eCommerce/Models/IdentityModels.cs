@@ -21,7 +21,7 @@ namespace eCommerce.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("EFModelTirelire1", throwIfV1Schema: false)
         {
         }
 
@@ -29,5 +29,7 @@ namespace eCommerce.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<eCommerce.Entity.Produit> Produits { get; set; }
     }
 }

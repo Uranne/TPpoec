@@ -49,6 +49,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -197,9 +199,28 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProduitController.cs" />
+    <Compile Include="DataAcccess\IRepository.cs" />
+    <Compile Include="Entity\AdresseClient.cs" />
+    <Compile Include="Entity\AdresseFabricant.cs" />
+    <Compile Include="Entity\Avi.cs" />
+    <Compile Include="Entity\BackOffice.cs" />
+    <Compile Include="Entity\Client.cs" />
+    <Compile Include="Entity\Commande.cs" />
+    <Compile Include="Entity\DetailCommande.cs" />
+    <Compile Include="Entity\EFModelTirelire.cs" />
+    <Compile Include="DataAcccess\EFRepository.cs" />
+    <Compile Include="Entity\Fabriquant.cs" />
+    <Compile Include="Entity\Photo.cs" />
+    <Compile Include="Entity\Produit.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811131504118_V1.cs" />
+    <Compile Include="Migrations\201811131504118_V1.Designer.cs">
+      <DependentUpon>201811131504118_V1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -265,6 +286,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Produit\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -281,6 +303,14 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201811131504118_V1.resx">
+      <DependentUpon>201811131504118_V1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
