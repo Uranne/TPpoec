@@ -1,0 +1,106 @@
+﻿@model eCommerce.Entity.Produit
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Produit</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fabriquant.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fabriquant.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Poids)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Poids)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prix)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prix)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Désactivé ?")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hauteur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hauteur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Longueur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Longueur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Largeur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Largeur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Capacite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Capacite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Couleur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Couleur)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
