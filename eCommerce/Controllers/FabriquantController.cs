@@ -39,7 +39,7 @@ namespace eCommerce.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                // TODO: Gérer le catch ici
                 RepFab.Ajouter(f);
 
                 return RedirectToAction("Index");
@@ -53,17 +53,17 @@ namespace eCommerce.Controllers
         // GET: Fabriquant/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(RepFab.Trouver(id));
         }
 
         // POST: Fabriquant/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Fabriquant f)
         {
             try
             {
-                // TODO: Add update logic here
-
+                // TODO: Faire le catch ici
+                RepFab.Modifier(id, f);
                 return RedirectToAction("Index");
             }
             catch

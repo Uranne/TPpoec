@@ -26,6 +26,9 @@ namespace eCommerce.Entity
         [StringLength(256)]
         public string Description { get; set; }
 
+        [Required]
+        public bool Status { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AdresseFabricant> AdresseFabricants { get; set; }
 
