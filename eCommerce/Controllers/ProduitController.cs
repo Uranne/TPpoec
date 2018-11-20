@@ -69,7 +69,7 @@ namespace eCommerce.Controllers
             
             foreach (var item in collection)
             {
-                
+                item.GetType();
             }
             return View("Index");
         }

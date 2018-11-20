@@ -3,12 +3,28 @@
 @{
     ViewBag.Title = "Index";
 }
+@Scripts.Render("~/bundles/jquery")
+<script>
+
+    $(function () {
+        $("#envoie").click(function () {
+            var liste;
+            $('.table').find('input').each(function () {
+                if ($(this).attr("value") === "true") {
+                    liste += $(this).attr("name") + ",";
+                }
+            });
+            $.post("~/Produit/Disable", liste);
+        });
+    });
+
+</script>
 
 <h2>Index</h2>
-@Html.BeginForm("Disable","Produit", FormMethod.Post){
+
 <p>
     @Html.ActionLink("Create New", "Create") |
-    <input type="submit" value="Désactiver les éléments sélectionnés" class="btn btn-default" />
+    <input type="submit" value="Désactiver les éléments sélectionnés" id="envoie" class="btn btn-default" />
 </p>
 
 <table class="table">
@@ -94,4 +110,3 @@
     }
 
 </table>
-}
