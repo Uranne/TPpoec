@@ -71,27 +71,7 @@ namespace eCommerce.Controllers
                 return View();
             }
         }
-
-        // GET: Fabriquant/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Fabriquant/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        
+        // TODO: Permettre de désactiver un Fabriquant -> cela implique une désactivation des produits liés -> Demander confirmation.
     }
 }

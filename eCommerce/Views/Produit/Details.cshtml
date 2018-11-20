@@ -46,9 +46,14 @@
             @Html.DisplayName("Désactivé ?")
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
+            @if (Model.Status)
+            {
+                <dd>Inactif</dd>
+            }
+            else
+            {
+                <dd>Actif</dd>
+            }
 
         <dt>
             @Html.DisplayNameFor(model => model.Hauteur)

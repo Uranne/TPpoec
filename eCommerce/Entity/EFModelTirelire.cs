@@ -8,7 +8,7 @@ namespace eCommerce.Entity
     public partial class EFModelTirelire : DbContext
     {
         public EFModelTirelire()
-            : base("name=EFModelTirelire-Maison")
+            : base("name=EFModelTirelire1")
         {
         }
 

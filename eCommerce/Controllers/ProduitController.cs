@@ -50,7 +50,6 @@ namespace eCommerce.Controllers
             try
             {
                 // TODO: Ajouter la mise en place de photo
-                // TODO: Permettre de mettre des prix décimaux
                 // TODO: AJouter un bouton cloner en plus de edit, détails et delete qui prérempli le formulaire (Emmene vers une vue détail avec l'option de cloner en plus)
                 // TODO: Envoyer le nouveau fabriquant sans recharger la page et définir son ID dans la requête de sortie
                 // TODO: Le catch de l'erreur
@@ -62,6 +61,17 @@ namespace eCommerce.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpPost]
+        public ActionResult Disable(FormCollection collection)
+        {
+            
+            foreach (var item in collection)
+            {
+                
+            }
+            return View("Index");
         }
 
         // GET: Produit/Edit/5

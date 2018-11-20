@@ -36,7 +36,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Prix, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Prix, new { htmlAttributes = new { @class = "form-control" } })
+                <input class="form-control text-box single-line" data-val="true" data-val-currency="Le champ Prix doit être un nombre." data-val-required="Le champ Prix est requis." id="Prix" name="Prix" type="text" value="@Model.Prix">
+                @*@Html.EditorFor(model => model.Prix, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.Prix, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -54,7 +55,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Hauteur, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Hauteur, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Hauteur, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
                 @Html.ValidationMessageFor(model => model.Hauteur, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -62,7 +63,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Longueur, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Longueur, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Longueur, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
                 @Html.ValidationMessageFor(model => model.Longueur, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -70,7 +71,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Largeur, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Largeur, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Largeur, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
                 @Html.ValidationMessageFor(model => model.Largeur, "", new { @class = "text-danger" })
             </div>
         </div>
