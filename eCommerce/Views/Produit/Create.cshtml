@@ -1,4 +1,4 @@
-﻿@model eCommerce.Entity.Produit
+﻿@model eCommerce.ViewModel.ProduitViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -15,119 +15,128 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Produit", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Produit</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nom, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nom, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nom, "", new { @class = "text-danger" })
-            </div>
+<div class="form-horizontal">
+    <h4>Produit</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.produit.Nom, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.produit.Nom, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.produit.Nom, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Poids, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Poids, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Poids, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.produit.Poids, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.produit.Poids, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.produit.Poids, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Prix, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input class="form-control text-box single-line" data-val="true" data-val-currency="Le champ Prix doit être un nombre." data-val-required="Le champ Prix est requis." id="Prix" name="Prix" type="text" value="">
-                @*@Html.EditorFor(model => model.Prix, new { htmlAttributes = new { @class = "form-control" } })*@
-                @Html.ValidationMessageFor(model => model.Prix, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.produit.Prix, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" data-val="true" data-val-currency="Le champ Prix doit être un nombre." data-val-required="Le champ Prix est requis." id="Prix" name="Prix" type="text" value="">
+            @*@Html.EditorFor(model => model.Prix, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.ValidationMessageFor(model => model.produit.Prix, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.Label("Désactivé ?", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Status)
-                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Hauteur, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Hauteur, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
-                @Html.ValidationMessageFor(model => model.Hauteur, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Longueur, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Longueur, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
-                @Html.ValidationMessageFor(model => model.Longueur, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Largeur, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Largeur, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
-                @Html.ValidationMessageFor(model => model.Largeur, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Capacite, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Capacite, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Capacite, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Couleur, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Couleur, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Couleur, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IdFabricant, "IdFabricant", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10" style="width:30%">
-                @Html.DropDownList("IdFabricant", (IEnumerable<SelectListItem>)ViewBag.IDFabriquants, htmlAttributes: new { @class = "form-control" })
-
-                @Html.ValidationMessageFor(model => model.IdFabricant, "", new { @class = "text-danger" })
-
-            </div>
-            <div style="float:right;  width:50%">
-                <input type="button" class="NouvFabClick btn btn-default" value="Nouveau" />
-            </div>
-        </div>
-        <div id="nouveauFab" style="display:none; border-style:solid; padding-top:10px; margin-bottom:10px;">
-            @{Html.RenderPartial("_CreationFabriquant");}
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+    <div class="form-group">
+        @Html.Label("Désactivé ?", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.produit.Status)
+                @Html.ValidationMessageFor(model => model.produit.Status, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.produit.Hauteur, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.produit.Hauteur, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
+            @Html.ValidationMessageFor(model => model.produit.Hauteur, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.produit.Longueur, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.produit.Longueur, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
+            @Html.ValidationMessageFor(model => model.produit.Longueur, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.produit.Largeur, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.produit.Largeur, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
+            @Html.ValidationMessageFor(model => model.produit.Largeur, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.produit.Capacite, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.produit.Capacite, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.produit.Capacite, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.produit.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.produit.Description, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.produit.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.produit.Couleur, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.produit.Couleur, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.produit.Couleur, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Fabricant", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10" style="width:30%">
+            @Html.DropDownListFor(model=>model.produit.IdFabricant, (IEnumerable<SelectListItem>)ViewBag.IDFabriquants, htmlAttributes: new { id="produit_IdFabricant", name="produit.IdFabricant", @class = "form-control" })
+
+            @Html.ValidationMessageFor(model => model.produit.IdFabricant, "", new { @class = "text-danger" })
+
+        </div>
+        <div style="float:right;  width:50%">
+            <input type="button" class="NouvFabClick btn btn-default" value="Nouveau" />
+        </div>
+    </div>
+    <div id="nouveauFab" style="display:none; border-style:solid; padding-top:10px; margin-bottom:10px;">
+        @{Html.RenderPartial("_CreationFabriquant");}
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Images", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model=>model.images, "", new { @type="file", @multiple="multiple"})
+            @Html.ValidationMessageFor(model=>model.images, "", new { @class="text-danger"})
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
 }
 
 <div>

@@ -49,7 +49,7 @@ namespace eCommerce.Controllers
                     MemoryStream fileData = new MemoryStream();
                     fileModel.Image.InputStream.CopyTo(fileData);
 
-                       Photo p = new Photo { Image = fileData.ToArray(), IdProduit=fileModel.IdProduit, ImageType=string.Format("data:{0};base64,", fileModel.Image.ContentType) };
+                    Photo p = new Photo { Image = fileData.ToArray(), IdProduit=fileModel.IdProduit, ImageType=string.Format("data:{0};base64,", fileModel.Image.ContentType) };
                     RepPhoto.Ajouter(p);
                 }
                 return RedirectToAction("Index", new { id =fileModel.IdProduit});

@@ -4,27 +4,28 @@
     ViewBag.Title = "Index";
 }
 @Scripts.Render("~/bundles/jquery")
-<script>
+@*<script>
 
     $(function () {
         $("#envoie").click(function () {
-            var liste;
+            var liste = "";
             $('.table').find('input').each(function () {
-                if ($(this).attr("value") === "true") {
+                if ($(this).is(':checked') && $(this).attr("type")=="checkbox") {
                     liste += $(this).attr("name") + ",";
                 }
             });
-            $.post("~/Produit/Disable", liste);
+            $.post("/Produit/Disable/", { elements: liste });
         });
     });
 
-</script>
+</script>*@
 
 <h2>Index</h2>
-
+@using (Html.BeginForm("Disable", "Produit"))
+{
 <p>
     @Html.ActionLink("Create New", "Create") |
-    <input type="submit" value="Désactiver les éléments sélectionnés" id="envoie" class="btn btn-default" />
+    <input type="submit" value="Changer le status des éléments sélectionnés" class="btn btn-default" />
 </p>
 
 <table class="table">
@@ -59,24 +60,24 @@
         </th>
         <th></th>
     </tr>
-
-    @foreach (var item in Model)
+    @{ List<eCommerce.Entity.Produit> liste = Model.ToList();}
+    @for(int i=0;i<Model.Count();i++)
     {
         <tr>
             <td>
-                @Html.CheckBox(string.Format("disable{0}", item.Id))
+                @Html.CheckBox("_"+liste[i].Id,false,new { htmlAttributes = new {  id="_"+liste[i].Id, @class = "form-control" } })
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Nom)
+                @Html.DisplayFor(modelItem => liste[i].Nom)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Poids)
+                @Html.DisplayFor(modelItem => liste[i].Poids)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Prix)
+                @Html.DisplayFor(modelItem => liste[i].Prix)
             </td>
 
-            @if (item.Status)
+            @if (liste[i].Status)
             {
                 <td>Inactif</td>
             }
@@ -86,27 +87,28 @@
             }
 
             <td>
-                @Html.DisplayFor(modelItem => item.Hauteur) x @Html.DisplayFor(modelItem => item.Longueur) x @Html.DisplayFor(modelItem => item.Largeur)
+                @Html.DisplayFor(modelItem => liste[i].Hauteur) x @Html.DisplayFor(modelItem => liste[i].Longueur) x @Html.DisplayFor(modelItem => liste[i].Largeur)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Capacite)
+                @Html.DisplayFor(modelItem => liste[i].Capacite)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
+                @Html.DisplayFor(modelItem => liste[i].Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Couleur)
+                @Html.DisplayFor(modelItem => liste[i].Couleur)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Fabriquant.Nom)
+                @Html.DisplayFor(modelItem => liste[i].Fabriquant.Nom)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
-                @Html.ActionLink("Photos", "Index", "Photo", new { id = item.Id }, null)
+                @Html.ActionLink("Edit", "Edit", new { id = liste[i].Id }) |
+                @Html.ActionLink("Details", "Details", new { id = liste[i].Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = liste[i].Id }) |
+                @Html.ActionLink("Photos", "Index", "Photo", new { id = liste[i].Id }, null)
             </td>
         </tr>
     }
 
 </table>
+}
