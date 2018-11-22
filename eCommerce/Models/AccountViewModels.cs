@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using eCommerce.Entity;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace eCommerce.Models
@@ -79,6 +80,8 @@ namespace eCommerce.Models
         [Display(Name = "Confirmer le mot de passe ")]
         [Compare("Password", ErrorMessage = "Le mot de passe et le mot de passe de confirmation ne correspondent pas.")]
         public string ConfirmPassword { get; set; }
+
+        public Client client { get; set; }
     }
 
     public class ResetPasswordViewModel

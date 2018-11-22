@@ -2,10 +2,19 @@
 @{
     ViewBag.Title = "S’inscrire";
 }
+@Scripts.Render("~/bundles/jquery")
+<script>
+    $(function () {
+        $.validator.addMethod('date',
+            function (value, element) {
+                return true;
+            });
+    });
+</script>
 
 <h2>@ViewBag.Title.</h2>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <h4>Créer un nouveau compte.</h4>
@@ -27,6 +36,30 @@
         @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.client.Nom, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.client.Nom, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.client.Prenom, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.client.Prenom, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.client.DateNaissance, new { @id="_dateTime", @class = "_dateTime col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.client.DateNaissance, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.client.Telephone, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.client.Telephone, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">

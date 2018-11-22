@@ -62,8 +62,9 @@ namespace eCommerce.Controllers
                 : message == ManageMessageId.AddPhoneSuccess ? "Votre numéro de téléphone a été ajouté."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Votre numéro de téléphone a été supprimé."
                 : "";
-
+            
             var userId = User.Identity.GetUserId();
+            ViewBag.UserId = userId;
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),

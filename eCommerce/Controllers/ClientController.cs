@@ -1,4 +1,7 @@
-﻿using System;
+﻿using eCommerce.DataAcccess;
+using eCommerce.DataAccess;
+using eCommerce.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,16 +11,13 @@ namespace eCommerce.Controllers
 {
     public class ClientController : Controller
     {
+
+        IRepository<Client> RepClient = new EFRepository<Client>();
+
         // GET: Client
         public ActionResult Index()
         {
-            return View();
-        }
-
-        // GET: Client/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
+            return View(RepClient.Lister());
         }
 
         // GET: Client/Create
@@ -42,20 +42,43 @@ namespace eCommerce.Controllers
             }
         }
 
-        // GET: Client/Edit/5
-        public ActionResult Edit(int id)
+        //GET : Client/EditClient/identifiant
+        public ActionResult EditClient(string identifiant)
         {
-            return View();
+            Client c = RepClient.Lister().Where(cl => cl.Identifiant == identifiant).First();
+            return View(c);
         }
 
-        // POST: Client/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult EditClient(Client c)
         {
             try
             {
                 // TODO: Add update logic here
+                RepClient.Modifier(c.Id, c);
+                return RedirectToAction("Index", "Manage");
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
+        // GET: Client/Edit/5
+        public ActionResult Edit(int id)
+        {
+            Client c = RepClient.Trouver(id);
+            return View(c);
+        }
+
+        // POST: Client/Edit/5
+        [HttpPost]
+        public ActionResult Edit(int id, Client c)
+        {
+            try
+            {
+                // TODO: Add update logic here
+                RepClient.Modifier(id, c);
                 return RedirectToAction("Index");
             }
             catch

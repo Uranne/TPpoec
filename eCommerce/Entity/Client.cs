@@ -27,10 +27,11 @@ namespace eCommerce.Entity
         [StringLength(20)]
         public string Prenom { get; set; }
 
-        [Required]
         [StringLength(10)]
         public string Skin { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode =true)]
         public DateTime DateNaissance { get; set; }
 
         public bool Status { get; set; }
@@ -38,18 +39,8 @@ namespace eCommerce.Entity
         [Required]
         [StringLength(13)]
         public string Telephone { get; set; }
-
-        [Required]
-        [StringLength(512)]
+        
         public string Identifiant { get; set; }
-
-        [Required]
-        [StringLength(50)]
-        public string Password { get; set; }
-
-        [Required]
-        [StringLength(50)]
-        public string email { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AdresseClient> AdresseClients { get; set; }

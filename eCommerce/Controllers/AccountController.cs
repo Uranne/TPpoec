@@ -9,6 +9,10 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using eCommerce.Models;
+using eCommerce.ViewModel;
+using eCommerce.DataAcccess;
+using eCommerce.Entity;
+using eCommerce.DataAccess;
 
 namespace eCommerce.Controllers
 {
@@ -17,6 +21,7 @@ namespace eCommerce.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        IRepository<Client> RepClient = new EFRepository<Client>();
 
         public AccountController()
         {
@@ -156,8 +161,11 @@ namespace eCommerce.Controllers
                 if (result.Succeeded)
                 {
                     UserManager.AddToRole(user.Id, "Client");
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    Client c = model.client;
+                    c.Identifiant = user.Id;
+                    c.Skin = "Default";
+                    RepClient.Ajouter(c);
                     // Pour plus d'informations sur l'activation de la confirmation de compte et de la réinitialisation de mot de passe, visitez https://go.microsoft.com/fwlink/?LinkID=320771
                     // Envoyer un message électronique avec ce lien
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

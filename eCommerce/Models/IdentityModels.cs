@@ -29,7 +29,5 @@ namespace eCommerce.Models
         {
             return new ApplicationDbContext();
         }
-
-        public System.Data.Entity.DbSet<eCommerce.Entity.Produit> Produits { get; set; }
     }
 }
