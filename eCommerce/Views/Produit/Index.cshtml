@@ -99,7 +99,7 @@
                 @Html.DisplayFor(modelItem => liste[i].Couleur)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => liste[i].Fabriquant.Nom)
+                @Html.ActionLink(liste[i].Fabriquant.Nom,"Details", "Fabriquant", new { id=liste[i].Fabriquant.Id}, null)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = liste[i].Id }) |

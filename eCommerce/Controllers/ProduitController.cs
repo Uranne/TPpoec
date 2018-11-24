@@ -15,26 +15,45 @@ namespace eCommerce.Controllers
     // TODO: Proposer des méthodes de tri pour les Produits : Nom, Id, Status, Fabriquants
     public class ProduitController : Controller
     {
-        IRepository<Produit> RepProduit = new EFRepository<Produit>();
+        IRepository<Produit> RepProduit = new EFProduitRepository();
         IRepository<Fabriquant> RepFab = new EFRepository<Fabriquant>();
         IRepository<Photo> RepPhoto = new EFRepository<Photo>();
 
         // GET: Produit
         //Index des produits côté BackOffice
+        [Authorize(Roles = CustomRoles.AdminOrAssistant)]
         public ActionResult Index()
         {
             return View(RepProduit.Lister());
         }
 
+        // GET: Produit
+        //Index des produits Vue Client
+        public ActionResult NosProduits()
+        {
+            List<Produit> data = RepProduit.Lister().ToList();
+
+            return View(data);
+        }
+
         // GET: Produit/Details/5
         //Détail des produits côté BackOffice
+        [Authorize(Roles = CustomRoles.AdminOrAssistant)]
         public ActionResult Details(int id)
+        {
+            return View(RepProduit.Trouver(id));
+        }
+
+        //GET: Produit/Fiche/...
+        //Détail d'un produit Vue Client
+        public ActionResult Fiche(int id)
         {
             return View(RepProduit.Trouver(id));
         }
 
         // GET: Produit/Create
         //Création d'un produit : cette méthode ne peut être executé par un client
+        [Authorize(Roles = CustomRoles.AdminOrAssistant)]
         public ActionResult Create()
         {
             InitialisationDropListFabriquant();
@@ -48,6 +67,7 @@ namespace eCommerce.Controllers
 
         // POST: Produit/Create
         [HttpPost]
+        [Authorize(Roles = CustomRoles.AdminOrAssistant)]
         public ActionResult Create(ProduitViewModel retour)
         {
             try
@@ -80,6 +100,7 @@ namespace eCommerce.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = CustomRoles.AdminOrAssistant)]
         public ActionResult Disable(FormCollection collection)//string elements)
         {
             #region Traitement avec $.post
@@ -121,6 +142,7 @@ namespace eCommerce.Controllers
         }
 
         // GET: Produit/Edit/5
+        [Authorize(Roles = CustomRoles.AdminOrAssistant)]
         public ActionResult Edit(int id)
         {
             InitialisationDropListFabriquant();
@@ -129,6 +151,7 @@ namespace eCommerce.Controllers
 
         // POST: Produit/Edit/5
         [HttpPost]
+        [Authorize(Roles = CustomRoles.AdminOrAssistant)]
         public ActionResult Edit(int id, Produit p)
         {
             try

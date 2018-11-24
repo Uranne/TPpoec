@@ -84,6 +84,8 @@ namespace eCommerce.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    // TODO: Ajouter ici dans le tableau de session, l'ID du client en utilisant l'ID du HttpContext.User.Identity
+                    // HttpContext.User.IsInRole
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

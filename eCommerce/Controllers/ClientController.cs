@@ -15,34 +15,14 @@ namespace eCommerce.Controllers
         IRepository<Client> RepClient = new EFRepository<Client>();
 
         // GET: Client
+        [Authorize(Roles = CustomRoles.AdminOrAssistant)]
         public ActionResult Index()
         {
             return View(RepClient.Lister());
         }
 
-        // GET: Client/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Client/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
         //GET : Client/EditClient/identifiant
+        [Authorize(Roles = CustomRoles.Client)]
         public ActionResult EditClient(string identifiant)
         {
             Client c = RepClient.Lister().Where(cl => cl.Identifiant == identifiant).First();
@@ -50,6 +30,7 @@ namespace eCommerce.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = CustomRoles.Client)]
         public ActionResult EditClient(Client c)
         {
             try
@@ -65,6 +46,7 @@ namespace eCommerce.Controllers
         }
 
         // GET: Client/Edit/5
+        [Authorize(Roles = CustomRoles.AdminOrAssistant)]
         public ActionResult Edit(int id)
         {
             Client c = RepClient.Trouver(id);
@@ -73,34 +55,13 @@ namespace eCommerce.Controllers
 
         // POST: Client/Edit/5
         [HttpPost]
+        [Authorize(Roles = CustomRoles.AdminOrAssistant)]
         public ActionResult Edit(int id, Client c)
         {
             try
             {
                 // TODO: Add update logic here
                 RepClient.Modifier(id, c);
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Client/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Client/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
                 return RedirectToAction("Index");
             }
             catch

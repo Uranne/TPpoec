@@ -17,6 +17,7 @@ namespace eCommerce.Controllers
         IRepository<Produit> RepProduit = new EFRepository<Produit>();
 
         // GET: Photo
+        [Authorize(Roles = CustomRoles.AdminOrAssistant)]
         public ActionResult Index(int id)
         {
             ViewBag.Title = "Photos de " + RepProduit.Lister().Where(p => p.Id == id).First().Nom;
@@ -25,12 +26,14 @@ namespace eCommerce.Controllers
         }
 
         // GET: Photo/Details/5
+        [Authorize(Roles = CustomRoles.AdminOrAssistant)]
         public ActionResult Details(int id)
         {
             return View();
         }
 
         // GET: Photo/Create
+        [Authorize(Roles = CustomRoles.AdminOrAssistant)]
         public ActionResult Create(int id)
         {
             ViewBag.Id = id;
@@ -39,6 +42,7 @@ namespace eCommerce.Controllers
 
         // POST: Photo/Create
         [HttpPost]
+        [Authorize(Roles = CustomRoles.AdminOrAssistant)]
         public ActionResult Create(FileViewModel fileModel)
         {
             try
@@ -68,6 +72,7 @@ namespace eCommerce.Controllers
         //}
 
         // POST: Photo/Delete/5
+        [Authorize(Roles = CustomRoles.AdminOrAssistant)]
         public ActionResult Delete(int id)
         {
             try

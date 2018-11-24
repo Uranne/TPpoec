@@ -15,6 +15,7 @@ namespace eCommerce.Controllers
 
         // GET: Fabriquant
         //Version BackOffice de l'index
+        [Authorize(Roles = CustomRoles.AdminOrAssistant)]
         public ActionResult Index()
         {
             return View(RepFab.Lister());
@@ -23,10 +24,11 @@ namespace eCommerce.Controllers
         // GET: Fabriquant/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(RepFab.Trouver(id));
         }
 
         // GET: Fabriquant/Create
+        [Authorize(Roles = CustomRoles.AdminOrAssistant)]
         public ActionResult Create()
         {
             return View();
@@ -35,6 +37,7 @@ namespace eCommerce.Controllers
         // POST: Fabriquant/Create
         //La création est uniquement disponible pour le backoffice  
         [HttpPost]
+        [Authorize(Roles = CustomRoles.AdminOrAssistant)]
         public ActionResult Create(Fabriquant f)
         {
             try
@@ -51,6 +54,7 @@ namespace eCommerce.Controllers
         }
 
         // GET: Fabriquant/Edit/5
+        [Authorize(Roles = CustomRoles.AdminOrAssistant)]
         public ActionResult Edit(int id)
         {
             return View(RepFab.Trouver(id));
@@ -58,6 +62,7 @@ namespace eCommerce.Controllers
 
         // POST: Fabriquant/Edit/5
         [HttpPost]
+        [Authorize(Roles = CustomRoles.AdminOrAssistant)]
         public ActionResult Edit(int id, Fabriquant f)
         {
             try

@@ -67,6 +67,10 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
             @Html.ActionLink("Désactiver", "Delete", new { id = item.Id })
+            <br />
+            @Html.ActionLink("Commandes", "Commande", new { id = item.Id}) |
+            @Html.ActionLink("Avis", "Avis", new { id=item.Id}) |
+            @Html.ActionLink("Adresses", "Client", new { id=item.Id})
         </td>
     </tr>
 }

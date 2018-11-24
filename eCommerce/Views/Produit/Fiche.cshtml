@@ -1,0 +1,107 @@
+﻿@model eCommerce.Entity.Produit
+
+@{
+    ViewBag.Title = "Fiche";
+}
+
+<h2>Fiche</h2>
+
+<div class="row">
+    <h4>Produit</h4>
+    <hr />
+    <div class="col-sm-3">
+        @{
+            string base64 = Convert.ToBase64String(Model.Photos.First().Image);
+            string imgSrc = Model.Photos.First().ImageType + base64;
+            }
+        <img src="@imgSrc" alt="une image pas visible" class="img-thumbnail" style="width:100%; margin-bottom:2em; z-index:1" />
+    </div>
+    <div class="col-sm-9" style="padding-top:1em">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayName("Fabricant")
+            </dt>
+
+            <dd>
+                @Html.ActionLink(Model.Fabriquant.Nom, "Details", "Fabriquant", new { id = Model.Fabriquant.Id }, null)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Nom)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nom)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Poids)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Poids)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Prix)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Prix)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Status)
+            </dt>
+            @if (Model.Status)
+            {
+                <dd>
+                    Indisponible
+                </dd>
+            }
+            else
+            {
+                <dd>
+                    Disponible
+                </dd>
+            }
+
+            <dt>
+                @Html.DisplayName("Dimensions(H/L/l)")
+            </dt>
+
+            <dd>
+                @string.Format("{0}x{1}x{2}", Model.Hauteur, Model.Longueur, Model.Largeur)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Capacite)
+            </dt>
+
+            <dd>
+                @string.Format("{0} pièces", Model.Capacite)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Couleur)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Couleur)
+            </dd>
+
+        </dl>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "NosProduits")
+</p>

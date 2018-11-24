@@ -93,5 +93,7 @@ namespace eCommerce.Entity
                 .HasForeignKey(e => e.IdProduit)
                 .WillCascadeOnDelete(false);
         }
+
+        public System.Data.Entity.DbSet<eCommerce.ViewModel.ProduitImageViewModel> ProduitImageViewModels { get; set; }
     }
 }

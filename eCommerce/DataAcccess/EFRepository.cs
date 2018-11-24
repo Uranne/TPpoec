@@ -26,7 +26,7 @@ namespace eCommerce.DataAccess
             }
         }
 
-        public IEnumerable<T> Lister()
+        public virtual IEnumerable<T> Lister()
         {
             return bdd.Set<T>().ToList();
         }
