@@ -21,7 +21,7 @@ namespace eCommerce.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("EFModelTirelire1", throwIfV1Schema: false)
+            : base("EFModelTirelire-Maison", throwIfV1Schema: false)
         {
         }
 

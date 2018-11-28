@@ -198,6 +198,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\CommandeController.cs" />
     <Compile Include="Controllers\FabriquantController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -206,6 +207,7 @@
     <Compile Include="DataAcccess\CustomRoles.cs" />
     <Compile Include="DataAcccess\EFProduitRepository.cs" />
     <Compile Include="DataAcccess\IRepository.cs" />
+    <Compile Include="DataAcccess\Skins.cs" />
     <Compile Include="Entity\AdresseClient.cs" />
     <Compile Include="Entity\AdresseFabricant.cs" />
     <Compile Include="Entity\Avi.cs" />
@@ -227,6 +229,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\FileViewModel.cs" />
+    <Compile Include="ViewModel\PanierViewModele.cs" />
     <Compile Include="ViewModel\ProduitImageViewModel.cs" />
     <Compile Include="ViewModel\ProduitViewModel.cs" />
   </ItemGroup>
@@ -307,6 +310,10 @@
     <Content Include="Views\Fabriquant\Details.cshtml" />
     <Content Include="Views\Produit\NosProduits.cshtml" />
     <Content Include="Views\Produit\Fiche.cshtml" />
+    <Content Include="Views\Client\Detail.cshtml" />
+    <Content Include="Views\Shared\_BackLayout.cshtml" />
+    <Content Include="Views\Produit\VoirAussi.cshtml" />
+    <Content Include="Views\Commande\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -345,7 +352,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>61971</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:61971/</IISUrl>
+          <IISUrl>http://localhost:61972/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

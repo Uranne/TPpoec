@@ -1,0 +1,56 @@
+﻿@model IEnumerable<eCommerce.ViewModel.PanierViewModele>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nbre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrixUnitaire)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nbre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrixUnitaire)
+        </td>
+        <td>
+            @Html.ActionLink("Plus", "Plus", new { id = item.idProduit })
+            @Html.ActionLink("Moins", "Moins", new { id = item.idProduit })
+            @Html.ActionLink("Delete", "Delete", new { id = item.idProduit })
+        </td>
+    </tr>
+}
+    <tr>
+        <td></td><td></td>
+                 <td>
+                     Prix Hors Frais :<br />
+                     Frais de Port :<br />
+                     Total :
+                 </td>
+        <td>
+            @ViewBag.Total€<br />
+            @ViewBag.Port€<br />
+            @{ decimal total = ViewBag.Total + ViewBag.Port;}
+            @total
+        </td>
+    </tr>
+
+</table>
+<div style="width=100%; height:3em">
+    @Html.ActionLink("Commander", "Commander", null, new { @class = "btn btn-default", style = "float:right" })
+</div>

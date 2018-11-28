@@ -44,6 +44,10 @@ namespace eCommerce.Entity
 
         public int IdClient { get; set; }
 
+        public bool PaiementDefaut { get; set; }
+
+        public bool LivraisonDefaut { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Commande> Commandes { get; set; }
 

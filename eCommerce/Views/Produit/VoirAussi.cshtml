@@ -1,0 +1,22 @@
+﻿@model IEnumerable<eCommerce.Entity.Produit>
+
+
+<div class="row thumbnail" style="width:80%; margin-left:auto; margin-right:auto">
+    <h5 style="font-weight:bold;">Ces éléments pourraient vous plaire</h5>
+    @if (!Model.Any())
+    {
+        <p>Aucun élément disponible pour le moment.</p>
+    }
+    else
+    {
+        foreach (eCommerce.Entity.Produit produit in Model)
+        {
+            string base64 = Convert.ToBase64String(produit.Photos.First().Image);
+            string imgSrc = produit.Photos.First().ImageType + base64;
+            <div class="col-sm-3" style="height:150px;">
+                <a href=@string.Format("/Produit/Fiche/{0}", produit.Id)><img src="@imgSrc" alt="une image pas visible" class="img-thumbnail" style="height:100%; vertical-align:middle;" /></a>
+            </div>
+        }
+    }
+
+</div>

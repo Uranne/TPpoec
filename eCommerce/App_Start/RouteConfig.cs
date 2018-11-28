@@ -14,6 +14,20 @@ namespace eCommerce
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "FicheClient",
+                url: "Fiche/{id}",
+                defaults: new { controller = "Produit", action = "Fiche", id = UrlParameter.Optional },
+                constraints: new {id = "\\d+"}
+            );
+
+            routes.MapRoute(
+                name: "TirelireClient",
+                url: "Tirelire/{id}",
+                defaults: new { controller = "Produit", action = "Fiche", id = UrlParameter.Optional },
+                constraints: new { id = "\\d+" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

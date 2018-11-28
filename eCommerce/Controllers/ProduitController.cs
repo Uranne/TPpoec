@@ -31,7 +31,7 @@ namespace eCommerce.Controllers
         //Index des produits Vue Client
         public ActionResult NosProduits()
         {
-            List<Produit> data = RepProduit.Lister().ToList();
+            List<Produit> data = RepProduit.Lister().ToList().Where(p=>p.Status!=true).ToList();
 
             return View(data);
         }
@@ -49,6 +49,13 @@ namespace eCommerce.Controllers
         public ActionResult Fiche(int id)
         {
             return View(RepProduit.Trouver(id));
+        }
+
+        //GET: Vue partiel qui défini jusqu'à 4 éléments de couleur similaire à l'argument
+        public PartialViewResult VoirAussi(string couleur, int banId)
+        {
+            IEnumerable<Produit> produits = RepProduit.Lister().Where(p => p.Couleur == couleur && p.Id!= banId).Take(4);
+            return PartialView(produits);
         }
 
         // GET: Produit/Create

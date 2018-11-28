@@ -20,7 +20,7 @@ namespace eCommerce.DataAcccess
         {
             try
             {
-                return bdd.Set<Produit>().Include("Photos").Where(p=>p.Id==ID).First();
+                return bdd.Set<Produit>().Include("Photos").Include("Fabriquant").Where(p=>p.Id==ID).First();
             }
             catch (Exception e)
             {

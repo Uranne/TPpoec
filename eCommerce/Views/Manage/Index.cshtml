@@ -23,7 +23,10 @@
             }
             ]
         </dd>
-        @Html.ActionLink("Editer son Profil", "EditClient", "Client", new { identifiant = (string)ViewBag.UserId }, new { @class="btn btn-default"})
+        @{ Html.RenderAction("Detail", "Client",  new { identifiant = (string)ViewBag.UserId });}
+        <br />
+        <br />
+        @Html.ActionLink("Editer son Profil", "EditClient", "Client", new { identifiant = (string)ViewBag.UserId }, new { @class = "btn btn-default" })
         @*<dt>Connexions externes :</dt>
         <dd>
             @Model.Logins.Count [

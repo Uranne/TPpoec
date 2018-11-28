@@ -9,21 +9,32 @@
 <div class="row">
     <h4>Produit</h4>
     <hr />
-    <div class="col-sm-3">
-        @{
-            string base64 = Convert.ToBase64String(Model.Photos.First().Image);
-            string imgSrc = Model.Photos.First().ImageType + base64;
+    <a data-toggle="modal" data-target="#Agrandi" style="cursor:zoom-in">
+        <div class="col-sm-3">
+            @{
+                string base64 = Convert.ToBase64String(Model.Photos.First().Image);
+                string imgSrc = Model.Photos.First().ImageType + base64;
             }
-        <img src="@imgSrc" alt="une image pas visible" class="img-thumbnail" style="width:100%; margin-bottom:2em; z-index:1" />
-    </div>
+            <img src="@imgSrc" alt="une image pas visible" class="img-thumbnail" style="width:100%; margin-bottom:2em; z-index:1" />
+        </div>
+    </a>
     <div class="col-sm-9" style="padding-top:1em">
         <dl class="dl-horizontal">
+            <dt>
+                Référence Produit
+            </dt>
+            <dd>
+                @Html.DisplayFor(model=>model.Id)
+            </dd>
             <dt>
                 @Html.DisplayName("Fabricant")
             </dt>
 
-            <dd>
-                @Html.ActionLink(Model.Fabriquant.Nom, "Details", "Fabriquant", new { id = Model.Fabriquant.Id }, null)
+            <dd data-toggle="collapse" data-target="#DescriptionFab">
+                @Html.DisplayFor(model => model.Fabriquant.Nom)
+                <p class="collapse" id="DescriptionFab">
+                    @Html.Display(Model.Fabriquant.Description)
+                </p>
             </dd>
 
             <dt>
@@ -83,14 +94,6 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.Description)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Description)
-            </dd>
-
-            <dt>
                 @Html.DisplayNameFor(model => model.Couleur)
             </dt>
 
@@ -98,10 +101,75 @@
                 @Html.DisplayFor(model => model.Couleur)
             </dd>
 
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt>
+
+            </dt>
+            <dd>
+                @Html.ActionLink("Ajouter au panier", "Ajouter", "Commande", new { id = Model.Id }, new { @class = "btn btn-default" })
+            </dd>
+            
         </dl>
     </div>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "NosProduits")
 </p>
+
+<div>
+    
+    @{ Html.RenderAction("VoirAussi", new { couleur = Model.Couleur, banId = Model.Id });}
+</div>
+
+
+<div class="modal fade" id="Agrandi">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="Carousel" class="carousel slide" data-ride="carousel" data-interval="false">
+                    <ol class="carousel-indicators">
+                        @for (int i = 0; i < Model.Photos.Count(); i++)
+                        {
+                            <li data-target="#Carousel" data-slide-to="i" style="background-color:#fff; border-color:black"></li>
+                        }
+                    </ol>
+
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img src="@imgSrc" alt="Une image pas chargé" class="img-rounded" style="max-width:100%" />
+                        </div>
+                        @for (int i = 1; i < Model.Photos.Count(); i++)
+                        {
+                            base64 = Convert.ToBase64String(Model.Photos.ElementAt(i).Image);
+                            imgSrc = Model.Photos.ElementAt(i).ImageType + base64;
+                            <div class="item">
+                                <img src="@imgSrc" alt="Une image pas chargé" class="img-rounded" style="max-width:100%" />
+                            </div>
+                        }
+                    </div>
+
+                    <a class="left carousel-control" href="#Carousel" data-slide="prev" style="background-image:none">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Précédent</span>
+                    </a>
+                    <a class="right carousel-control" href="#Carousel" data-slide="next" style="background-image:none">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Suivant</span>
+                    </a>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
