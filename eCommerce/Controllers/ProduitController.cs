@@ -18,6 +18,7 @@ namespace eCommerce.Controllers
         IRepository<Produit> RepProduit = new EFProduitRepository();
         IRepository<Fabriquant> RepFab = new EFRepository<Fabriquant>();
         IRepository<Photo> RepPhoto = new EFRepository<Photo>();
+        IRepository<Commande> RepCommande = new EFRepository<Commande>();
 
         // GET: Produit
         //Index des produits côté BackOffice
@@ -70,6 +71,23 @@ namespace eCommerce.Controllers
         private void InitialisationDropListFabriquant()
         {
             ViewBag.IDFabriquants = RepFab.Lister().Select(f => new SelectListItem { Text = f.Nom, Value = f.Id.ToString() });
+        }
+
+        [Authorize(Roles =CustomRoles.AdminOrAssistant)]
+        public ActionResult Top()
+        {
+            //Produits les plus vendus, top 5
+            Dictionary<int, long> palmares = new Dictionary<int, long>();
+            foreach (Produit item in RepProduit.Lister())
+            {
+                palmares.Add(item.Id, 0);
+                foreach (DetailCommande detail in item.DetailCommandes)
+                {
+                    palmares[item.Id] += detail.Qty;
+                }
+            }
+            //Récupérer maintenant les plus fréquents en triant le dico.
+            return View();
         }
 
         // POST: Produit/Create
