@@ -314,6 +314,11 @@
     <Content Include="Views\Shared\_BackLayout.cshtml" />
     <Content Include="Views\Produit\VoirAussi.cshtml" />
     <Content Include="Views\Commande\Index.cshtml" />
+    <Content Include="Views\Commande\Commander.cshtml" />
+    <Content Include="Views\Client\Adresses.cshtml" />
+    <Content Include="Views\Client\CreerAdresse.cshtml" />
+    <Content Include="Views\Commande\ListerCommande.cshtml" />
+    <Content Include="Views\Commande\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

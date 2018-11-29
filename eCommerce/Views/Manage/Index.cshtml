@@ -27,6 +27,7 @@
         <br />
         <br />
         @Html.ActionLink("Editer son Profil", "EditClient", "Client", new { identifiant = (string)ViewBag.UserId }, new { @class = "btn btn-default" })
+        @Html.ActionLink("Gérer ses adresses", "Adresses", "Client", new { identifiant = (string)ViewBag.UserId}, new { @class="btn btn-default"})
         @*<dt>Connexions externes :</dt>
         <dd>
             @Model.Logins.Count [

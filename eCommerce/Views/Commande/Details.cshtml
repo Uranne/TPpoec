@@ -1,0 +1,51 @@
+﻿@model IEnumerable<eCommerce.ViewModel.PanierViewModele>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nbre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrixUnitaire)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nbre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrixUnitaire)
+            </td>
+        </tr>
+    }
+    <tr>
+        <td></td>
+        <td></td>
+        <td>
+            Prix Hors Frais :<br />
+            Frais de Port :<br />
+            Total :
+        </td>
+        <td>
+            @ViewBag.Total€<br />
+            @ViewBag.Port€<br />
+            @{ decimal total = ViewBag.Total + ViewBag.Port;}
+            @total
+        </td>
+    </tr>
+
+</table>
+<div>
+    <h4>Livré à l'adresse suivante : </h4>
+    <p>@ViewBag.Adresse</p>
+</div>
+@Html.ActionLink("Retour à la liste des Commandes", "ListerCommande")
